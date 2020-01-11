@@ -1,0 +1,30 @@
+header {
+  background-color: white;
+  padding: 10px 0;
+
+  .logo {
+    width: 130px;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .links {
+    display: flex;
+    justify-content: space-between;
+    a {
+      font-family: "Josefin Sans", sans-serif;
+      font-size: 20px;
+      padding: 20px;
+      font-weight: 300;
+      letter-spacing: 0.8px;
+    }
+  }
+
+  .security-links {
+    width: 130px;
+    text-align: right;
+  }
+}

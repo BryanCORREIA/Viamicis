@@ -2,11 +2,41 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}{% endblock %} - Viamicis</title>
+        <link rel="stylesheet" href="{{ asset('lib/fontawesome/css/all.css') }}">
+        <link rel="stylesheet" href="{{ asset('lib/bootstrap-4/dist/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <header>
+            <div class="container">
+                <div class="flex-container justify-content-between align-items-center">
+                    <div class="logo">
+                        <img src="{{ asset('res/viamicis-simple.png') }}" alt="">
+                    </div>
+                    <div class="links">
+                        <a href="#">Rechercher un voyage</a>
+                        <a href="#">Proposer un voyage</a>
+                        <a href="#">Fiches découverte</a>
+                        <a href="#">Blog</a>
+                    </div>
+                    <div class="security-links">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
         {% block body %}{% endblock %}
+
+        <script src="{{ asset('build/runtime.js') }}"></script>
+        <script src="{{ asset('/lib/jQuery-3.3.1/jQuery.js') }}" crossorigin="anonymous"></script>
+        <script src="{{ asset('/lib/Ajax/popper.min.js') }}" crossorigin="anonymous"></script>
+        <script src="{{ asset('/lib/bootstrap-4/dist/js/bootstrap.min.js') }}" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

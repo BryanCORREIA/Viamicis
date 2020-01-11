@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600|Montserrat:400,500&display=swap');
+
+body {
+  color: $common;
+  font-family: Montserrat, sans-serif;
+}
+
+a, a:hover, a:link, a:visited, a:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+h2 {
+  font-family: "Josefin Sans", sans-serif;
+  letter-spacing: 1px;
+  color: $primary;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.text-gradiant {
+  background: linear-gradient(to right, $primary, $secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.color-primary {
+  background: none;
+  color: $primary;
+}
+
+.column-50 {
+  width: 50%;
+}
