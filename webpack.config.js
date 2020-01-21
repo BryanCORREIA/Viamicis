@@ -23,15 +23,21 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
+    .addEntry('vue/home', './assets/vue/home.js')
+
     .addStyleEntry('css/app', './assets/css/app.scss')
     .addStyleEntry('css/home', './assets/css/home.scss')
+    .addStyleEntry('vue/vuesax', './node_modules/vuesax/dist/vuesax.css')
+    .addStyleEntry('vue/icon', './node_modules/material-icons/iconfont/material-icons.css')
+
+    .enableVueLoader()
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
-    .enableSingleRuntimeChunk()
+    .disableSingleRuntimeChunk()
 
     /*
      * FEATURE CONFIG
@@ -60,7 +66,7 @@ Encore
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes(Encore.isProduction())
+    .enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
@@ -68,6 +74,18 @@ Encore
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
+
+    .addLoader({
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+        options: {
+            fix: true,
+            emitError: true,
+            emitWarning: true,
+        },
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();
