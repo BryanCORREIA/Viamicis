@@ -1,0 +1,54 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  letter-spacing: 0.8px;
+  align-items: center;
+
+  .box-logo {
+    width: 80px;
+    padding: 10px;
+  }
+
+  nav {
+    font-variant: all-small-caps;
+
+    a {
+      margin: 0 10px;
+      padding: 10px 0;
+      transition: 0.4s ease-in-out;
+      position: relative;
+      overflow: hidden;
+
+      &:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        content: '';
+        background-color: white;
+        height: 2px;
+        width: 100%;
+        transform: translateY(2px);
+        transition: 0.4s ease-in-out;
+        opacity: 0;
+      }
+
+      &:hover {
+        &:after {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .box-links-nav {
+    a {
+      padding: 10px 5px;
+    }
+  }
+}

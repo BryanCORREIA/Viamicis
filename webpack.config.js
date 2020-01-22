@@ -26,6 +26,7 @@ Encore
     .addEntry('vue/default', './assets/vue/default.js')
 
     .addStyleEntry('css/app', './assets/scss/app.scss')
+    .addStyleEntry('css/home', './assets/scss/home.scss')
 
     .addStyleEntry('vue/vuesax', './node_modules/vuesax/dist/vuesax.css')
     .addStyleEntry('vue/icon', './node_modules/material-icons/iconfont/material-icons.css')
