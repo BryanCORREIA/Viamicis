@@ -1,3 +1,21 @@
 index:
     path: /
     controller: App\Controller\DefaultController::index
+
+security_login:
+    path: /connexion
+    controller: App\Controller\SecurityController::login
+    methods: ['GET']
+
+security_login_submitted:
+    path: /connexion
+    controller: App\Controller\SecurityController::loginSubmitted
+    methods: ['POST']
+
+security_signup_submitted:
+    path: /inscription
+    controller: App\Controller\SecurityController::signupSubmitted
+    methods: ['POST']
+
+security_logout:
+    path: /deconnexion

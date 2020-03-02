@@ -23,22 +23,30 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
+    .addEntry('Cleave', './node_modules/cleave.js/src/Cleave.js')
+    .addEntry('CleavePhoneFr', './node_modules/cleave.js/dist/addons/cleave-phone.fr.js')
+
     .addEntry('vue/default', './assets/vue/default.js')
+
+    .addEntry('js/main', './assets/js/main.js')
+    .addEntry('js/security', './assets/js/security.js')
 
     .addStyleEntry('css/app', './assets/scss/app.scss')
     .addStyleEntry('css/home', './assets/scss/home.scss')
+    .addStyleEntry('css/security', './assets/scss/security.scss')
 
     .addStyleEntry('vue/vuesax', './node_modules/vuesax/dist/vuesax.css')
     .addStyleEntry('vue/icon', './node_modules/material-icons/iconfont/material-icons.css')
+    .addEntry('boxicons', './node_modules/boxicons/dist/boxicons.js')
 
     .enableVueLoader()
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
-    .splitEntryChunks()
+    // .splitEntryChunks()
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
-    .disableSingleRuntimeChunk()
+    .enableSingleRuntimeChunk()
 
     /*
      * FEATURE CONFIG
@@ -63,14 +71,14 @@ Encore
     .enableSassLoader()
 
     // uncomment if you use TypeScript
-    .enableTypeScriptLoader()
+    // .enableTypeScriptLoader()
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    // .autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
