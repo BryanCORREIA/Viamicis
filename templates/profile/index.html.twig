@@ -1,0 +1,11 @@
+{% extends 'base-profile.html.twig' %}
+
+{% block title %}{{ app.user.identity.fullName }} - Profil{% endblock %}
+
+{% block body %}
+    <div id="profile" data-user="{{ user }}"></div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/vue/profile__vue.js') }}"></script>
+{% endblock %}

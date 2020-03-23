@@ -26,18 +26,20 @@ Encore
     .addEntry('Cleave', './node_modules/cleave.js/src/Cleave.js')
     .addEntry('CleavePhoneFr', './node_modules/cleave.js/dist/addons/cleave-phone.fr.js')
 
-    .addEntry('vue/default', './assets/vue/default.js')
-
     .addEntry('js/main', './assets/js/main.js')
     .addEntry('js/security', './assets/js/security.js')
 
     .addStyleEntry('css/app', './assets/scss/app.scss')
     .addStyleEntry('css/home', './assets/scss/home.scss')
     .addStyleEntry('css/security', './assets/scss/security.scss')
+    .addStyleEntry('css/profile', './assets/scss/profile.scss')
 
     .addStyleEntry('vue/vuesax', './node_modules/vuesax/dist/vuesax.css')
     .addStyleEntry('vue/icon', './node_modules/material-icons/iconfont/material-icons.css')
     .addEntry('boxicons', './node_modules/boxicons/dist/boxicons.js')
+    .addEntry('feather', './node_modules/feather-icons/dist/feather.js')
+
+    .addEntry('vue/profile__vue', './assets/vue/profile__vue.js')
 
     .enableVueLoader()
 

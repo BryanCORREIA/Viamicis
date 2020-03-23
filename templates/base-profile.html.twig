@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %} - Viamicis</title>
+        <link rel="stylesheet" href="https://unpkg.com/vue-form-wizard/dist/vue-form-wizard.min.css">
+        {{ encore_entry_link_tags('vue/vuesax') }}
+        {{ encore_entry_link_tags('vue/icon') }}
+        {{ encore_entry_link_tags('css/app') }}
+        {{ encore_entry_link_tags('css/profile') }}
+        <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+
+        <script src="{{ asset('build/runtime.js') }}" crossorigin="anonymous"></script>
+        <script src="{{ asset('build/feather.js') }}" crossorigin="anonymous"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

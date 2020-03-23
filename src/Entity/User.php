@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Embedded\Identity;
+use App\Entity\Embedded\Parameters;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -27,6 +28,11 @@ class User implements UserInterface
      * @ORM\Embedded(class="App\Entity\Embedded\Identity", columnPrefix = "identity_")
      */
     private $identity;
+
+    /**
+     * @ORM\Embedded(class="App\Entity\Embedded\Parameters", columnPrefix = "parameters_")
+     */
+    private $parameters;
 
     /**
      * @ORM\Column(type="json")
@@ -139,5 +145,21 @@ class User implements UserInterface
     public function setIdentity(Identity $identity): void
     {
         $this->identity = $identity;
+    }
+
+    /**
+     * @return Parameters
+     */
+    public function getParameters(): Parameters
+    {
+        return $this->parameters;
+    }
+
+    /**
+     * @param Parameters $parameters
+     */
+    public function setParameters($parameters): void
+    {
+        $this->parameters = $parameters;
     }
 }

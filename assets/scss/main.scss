@@ -132,3 +132,11 @@ header.nav-header {
   stroke: #ffffff;
   animation: 10s linear forwards;
 }
+
+.flex-container {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}

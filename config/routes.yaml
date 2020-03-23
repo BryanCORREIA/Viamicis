@@ -17,5 +17,9 @@ security_signup_submitted:
     controller: App\Controller\SecurityController::signupSubmitted
     methods: ['POST']
 
+profil_index:
+    path: /profil
+    controller: App\Controller\ProfileController::index
+
 security_logout:
     path: /deconnexion
