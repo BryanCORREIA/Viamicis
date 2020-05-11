@@ -1,205 +1,191 @@
 <template>
-    <div class="profile">
-        <aside class="nav__menu">
-            <header>
+    <div class="profile__box" v-if="this.loaded">
+        <header>
+            <div class="header__logo">
+                <img src="/res/logo-white.svg" alt="">
+            </div>
+            <div class="header__content">
                 <h1>Viamicis</h1>
-                <button class="vs-button">
-                    <i data-feather="disc"></i>
-                </button>
-            </header>
-            <section>
-                <div class="sidenav-link">
-                    <router-link
-                            :to="{ name: 'dashboard' }"
-                            v-bind:class="{ 'sidenav-link-active': currentRoute('dashboard') }"
+                <router-link
+                        :to="{ name: 'addTrip' }"
+                        class="new__trip"
+                        v-bind:class="{ 'sidenav-link-active': currentRoute('addTrip') }"
+                >
+                    Proposer un voyage
+                </router-link>
+            </div>
+            <div class="header__aside">
+                <vs-tooltip bottom>
+                    <a>
+                        <i class="fas fa-bug"></i>
+                    </a>
+                    <template #tooltip>
+                        Un problème ? Signalez le ici.
+                    </template>
+                </vs-tooltip>
+                <vs-tooltip bottom>
+                    <a
+                        :class="userInfo ? 'active' : ''"
+                        @click="userInfo = !userInfo"
                     >
-                        <i data-feather="home"></i> Dashboard
-                    </router-link>
-                </div>
-                <div>
-                    <span class="navigation-header">Voyage</span>
-                    <div class="sidenav-link">
+                        <i class="fal fa-user"></i>
+                    </a>
+                    <template #tooltip>
+                        Information utilisateur
+                    </template>
+                </vs-tooltip>
+                <vs-tooltip bottom>
+                    <a
+                        @click="active=!active">
+                        <i class="fal fa-cog"></i>
+                    </a>
+                    <template #tooltip>
+                        Paramètres
+                    </template>
+                </vs-tooltip>
+            </div>
+        </header>
+        <div class="content__box">
+            <nav>
+                <div class="nav__top">
+                    <vs-tooltip right>
                         <router-link
-                                :to="{ name: 'addTrip' }"
+                                :to="{ name: 'dashboard' }"
+                                v-bind:class="{ 'sidenav-link-active': currentRoute('dashboard') }"
+                        >
+                            <i class="fal fa-home-lg-alt"></i>
+                        </router-link>
+                        <template #tooltip>
+                            Dashboard
+                        </template>
+                    </vs-tooltip>
+                    <vs-tooltip right>
+                        <router-link
+                                :to="{ name: 'actionTrip' }"
                                 v-bind:class="{ 'sidenav-link-active': currentRoute('addTrip') }"
                         >
-                            <i data-feather="plus-square"></i> Proposer un voyage
+                            <i class="fal fa-plane-departure"></i>
                         </router-link>
-                    </div>
-                    <div class="sidenav-link">
-                        <a href="#"><i data-feather="compass"></i> Rejoindre un voyage</a>
-                    </div>
-                    <div class="sidenav-link">
-                        <a href="#"><i data-feather="eye"></i> Voir mes voyages</a>
-                    </div>
-                    <div class="sidenav-link">
-                        <a href="#"><i data-feather="star" class="text-gold"></i> Notre sélection</a>
-                    </div>
+                        <template #tooltip>
+                            Voyage
+                        </template>
+                    </vs-tooltip>
+                    <a href="#"><i class="fal fa-comments-alt"></i></a>
+                    <a href="#"><i class="fal fa-book-open"></i></a>
                 </div>
-                <div>
-                    <span class="navigation-header">Blog</span>
-                    <div class="sidenav-link">
-                        <a href="#"><i data-feather="book-open"></i> Lire un article</a>
-                    </div>
-                    <div class="sidenav-link">
-                        <a href="#"><i data-feather="edit-3"></i> Rédiger un article</a>
-                    </div>
+                <div class="nav__bottom">
+                    <a href="#">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <vs-dialog blur width="550px" not-center v-model="active">
+                        <template #header>
+                            <h4 class="not-margin">
+                                Paramétre de l'interface
+                            </h4>
+                        </template>
+
+                        <div class="con-content">
+                            <p>Couleur de l'intercace</p>
+                            <div :style="`background: ${user.color};`" class="con-input">
+                                <input v-model="user.color" type="color">
+                                <i class='bx bxs-color-fill'></i>
+                            </div>
+                        </div>
+
+                        <template #footer>
+                            <div class="con-footer">
+                                <vs-button @click="active=false" transparent>
+                                    Terminé
+                                </vs-button>
+                            </div>
+                        </template>
+                    </vs-dialog>
                 </div>
-            </section>
-        </aside>
-        <aside class="content__box">
-            <div class="header__box">
-                <header>
-                    <div class="header-flex">
-                        <div class="header-links">
-                            <a href="http://vuesax.com/">
-                                <span><i data-feather="home"></i></span>
-                            </a>
-                            <a href="#" @click="openNotificationUser()">
-                                <span><i data-feather="message-square"></i></span>
-                            </a>
-                            <a href="http://vuesax.com/">
-                                <span><i data-feather="calendar"></i></span>
-                            </a>
+            </nav>
+            <main :class="userInfo ? 'aside__open' : ''">
+                <transition v-bind:name="user.transition" mode="out-in">
+                    <router-view v-bind:user="this.user"/>
+                </transition>
+            </main>
+            <transition name="translate__user__info">
+                <aside v-show="userInfo">
+                    <div class="user__info">
+                        <p>Bonjour, <br><b>{{ this.user.firstname }}</b></p>
+                        <vs-avatar size="70">
+                            <img :src="this.user.picture" alt="">
+                        </vs-avatar>
+                    </div>
+
+                    <div class="user__stats">
+                        <div class="stat">
+                            <p>Voyages</p>
+                            <div class="number__stat border-purple">
+                                <span>10</span>
+                            </div>
                         </div>
-                        <div class="header-account">
-                            <div class="header-links-account">
-                                <button class="vs-button" @click="showSettings = true">
-                                    <i data-feather="settings"></i>
-                                </button>
+                        <div class="stat">
+                            <p>Messages</p>
+                            <div class="number__stat border-yellow">
+                                <span>178</span>
                             </div>
-                            <div class="box-identity">
-                                <p class="font-semibold">{{ user.firstname }} {{ user.lastname }}</p>
-                                <small>Disponible</small>
-                            </div>
-                            <vs-avatar size="40px" src="https://cdn.discordapp.com/attachments/387598639532605453/685248718055931907/logo_large.png"/>
                         </div>
                     </div>
-                </header>
-            </div>
-            <transition v-bind:name="user.transition" mode="out-in">
-                <router-view v-bind:user="user"/>
+                </aside>
             </transition>
-        </aside>
-        <transition name="translate">
-            <aside v-show="showSettings" class="settings_box">
-                <div class="setting_content">
-                    <header>
-                        <h2>Mes options</h2>
-                        <button class="vs-button" @click="showSettings = false">
-                            <i data-feather="x-circle"></i>
-                        </button>
-                    </header>
-                    <section style="padding: 20px">
-                        <span class="navigation-header">Couleur de l'application</span>
-                        <div class="flex-container">
-                            <vs-button
-                                    color="#7267f0"
-                                    @click="changePrimaryColor('#7267f0')"
-                            >
-                                <i class='bx bxs-paint-roll' ></i>
-                            </vs-button>
-                            <vs-button
-                                    color="#28c770"
-                                    @click="changePrimaryColor('#28c770')"
-                            >
-                                <i class='bx bxs-paint-roll' ></i>
-                            </vs-button>
-                            <vs-button
-                                    color="#ea5454"
-                                    @click="changePrimaryColor('#ea5454')"
-                            >
-                                <i class='bx bxs-paint-roll' ></i>
-                            </vs-button>
-                            <vs-button
-                                    color="#1e1e1e"
-                                    @click="changePrimaryColor('#1e1e1e')"
-                            >
-                                <i class='bx bxs-paint-roll' ></i>
-                            </vs-button>
-                            <vs-button
-                                    color="#3dc9b4"
-                                    @click="changePrimaryColor('#3dc9b4')"
-                            >
-                                <i class='bx bxs-paint-roll' ></i>
-                            </vs-button>
-                        </div>
-                        <span class="navigation-header">Couleur de l'application</span>
-                        <vs-radio v-model="user.transition" vs-name="transition" vs-value="fade">
-                            Fondu
-                        </vs-radio>
-                        <vs-radio v-model="user.transition" vs-name="transition" vs-value="translate">
-                            Translation
-                        </vs-radio>
-                        <vs-radio v-model="user.transition" vs-name="transition" vs-value="zoom">
-                            Zoom
-                        </vs-radio>
-                    </section>
-                </div>
-            </aside>
-        </transition>
+        </div>
     </div>
 </template>
 
 <script>
-    import user from './Components/User';
-    const feather = require('feather-icons');
+    import axios from 'axios';
 
     export default {
-        data:() => ({
-            showSettings: false
+        name: "Profile",
+        data: () => ({
+            user : Object,
+            active: false,
+            userInfo: true,
+            loaded: false
         }),
-        mounted() {
-            feather.replace();
-            this.$vs.theme({
-                primary: this.user.color
+        watch: {
+            'user.color': function () {
+                this.$vs.setColor('primary', this.user.color);
+            }
+        },
+        created() {
+            const loading = this.$vs.loading({
+                type : 'gradient',
+                color : this.user.color,
+                opacity : 1
+
             });
+
+            axios
+                .get('/utilisateur')
+                .then((response) => {
+                    this.user = JSON.parse(response.data);
+                    this.$vs.setColor('primary', this.user.color);
+                    this.loaded = true;
+                    loading.close();
+                })
+                .catch((response) => {
+                    console.log(response)
+                })
+            ;
         },
-        watch:{
-            $route (to, from){
-                setTimeout(() => { feather.replace() }, 350);
-            },
-            color() {
-                this.$vs.theme({
-                    primary: this.user.color
-                });
-            }
-        },
-        props: {
-            user: {
-                type: Object,
-                required: true
-            }
-        },
-        computed: {
-            color() {
-                return this.user.color;
-            }
+        mounted() {
+
         },
         methods: {
-            changePrimaryColor(primaryColor) {
-                this.user.color = primaryColor;
-            },
-            openNotification(position = null, color) {
-                const noti = this.$vs.notification({
-                    sticky: true,
-                    color,
-                    position,
-                    title: 'Documentation Vuesax 4.0+',
-                    text: 'These documents refer to the latest version of vuesax (4.0+), to see the documents of the previous versions you can do it here 👉 Vuesax 3.x'
-                })
-            },
-            openNotificationUser() {
-                const noti = this.$vs.notification({
-                    duration: 'none',
-                    width: 'auto',
-                    content: user,
-                })
-            },
-
             currentRoute(route) {
                 return route === this.$router.currentRoute.name;
             },
+            changePrimary() {
+                this.$vs.setColor('primary', this.user.color);
+            }
         }
     }
 </script>

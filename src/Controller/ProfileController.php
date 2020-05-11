@@ -14,6 +14,10 @@ class ProfileController extends AbstractController
 {
     public function index()
     {
+        return $this->render('profile/index.html.twig');
+    }
+
+    public function getCurrentUser() {
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
 
@@ -21,8 +25,7 @@ class ProfileController extends AbstractController
 
         $userAction = UserAction::build($this->getUser());
         $user = $serializer->serialize($userAction, 'json');
-        return $this->render('profile/index.html.twig', [
-            'user' => $user
-        ]);
+
+        return $this->json($user);
     }
 }

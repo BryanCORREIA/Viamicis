@@ -2,6 +2,10 @@ index:
     path: /
     controller: App\Controller\DefaultController::index
 
+api_route:
+    resource: 'api_routes.yaml'
+    prefix: '/api'
+
 security_login:
     path: /connexion
     controller: App\Controller\SecurityController::login
@@ -18,8 +22,12 @@ security_signup_submitted:
     methods: ['POST']
 
 profil_index:
-    path: /profil
+    path: /profil/
     controller: App\Controller\ProfileController::index
+
+user_get:
+    path: /utilisateur
+    controller: App\Controller\ProfileController::getCurrentUser
 
 security_logout:
     path: /deconnexion

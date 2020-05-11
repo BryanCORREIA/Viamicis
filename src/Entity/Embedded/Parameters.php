@@ -10,18 +10,18 @@ use Doctrine\ORM\Mapping as ORM;
 class Parameters
 {
     /**
-     * @ORM\Column(type="string", length=7, options={"default" : "#C6452A"})
+     * @ORM\Column(type="string", length=7, options={"default" : "#941751"})
      */
     private $color;
 
     /**
-     * @ORM\Column(type="string", length=7, options={"default" : "fade"})
+     * @ORM\Column(type="string", length=100, options={"default" : "fade"})
      */
     private $transition;
 
     public function __construct()
     {
-        $this->color   = "#C6452A";
+        $this->color   = "#941751";
         $this->transition = "fade";
     }
 

@@ -1,0 +1,15 @@
+api_index:
+  path: /
+  controller: App\Controller\ApiController::index
+
+api_add_trip:
+  path: /add-trip
+  controller: App\Controller\ApiController::addTrip
+
+api_get_all_trip:
+  path: /get-all-trip
+  controller: App\Controller\ApiController::getAllTrip
+
+api_get_trip:
+  path: /get-trip/{id}
+  controller: App\Controller\ApiController::getTrip

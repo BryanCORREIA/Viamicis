@@ -22,6 +22,11 @@ class UserAction
     public $username;
 
     /**
+     * @var string
+     */
+    public $picture;
+
+    /**
      * @var array
      */
     public $roles;
@@ -78,6 +83,7 @@ class UserAction
         $user->firstname    = $_user->getIdentity()->getFirstname();
         $user->lastname     = $_user->getIdentity()->getLastname();
         $user->username     = $_user->getUsername();
+        $user->picture      = $_user->getIdentity()->getPicture();
         $user->roles        = $_user->getRoles();
         $user->address      = $_user->getIdentity()->getAddress();
         $user->city         = $_user->getIdentity()->getCity();

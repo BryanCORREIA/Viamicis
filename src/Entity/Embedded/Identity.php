@@ -55,6 +55,11 @@ class Identity
     private $country;
 
     /**
+     * @ORM\Column(type="text")
+     */
+    private $picture;
+
+    /**
      * @return mixed
      */
     public function getFirstname()
@@ -201,5 +206,21 @@ class Identity
     public function setBirth($birth): void
     {
         $this->birth = $birth;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * @param mixed $picture
+     */
+    public function setPicture($picture): void
+    {
+        $this->picture = $picture;
     }
 }
