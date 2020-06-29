@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.createdAt|date }}</p>
+    <div>{{ article.content|raw }}</div>
+    <h2>Commentaites ({{ article.comments |length }})</h2>
+    {% for comment in article.comments  %}
+        <div>{{ comment.content }}</div>
+
+        {% else %}
+        <p>Il n'y a pas de commentaires</p>
+    {% endfor %}
+<h2>Ajouter un commentaire</h2>
+{{ form(formComment) }}
+{% endblock %}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - Viamicis</title>
+    {{ encore_entry_link_tags('vue/vuesax') }}
+    {{ encore_entry_link_tags('vue/icon') }}
+    {{ encore_entry_link_tags('css/app') }}
+    <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    {% block stylesheets %}{% endblock %}
+</head>
+    <body>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-message flash-{{ label }}">
+                    <div id="countdown">
+                        <div id="countdown-number"></div>
+                        <svg class="countdown" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <circle r="90" cx="100" cy="100"></circle>
+                            <circle class="countdown-circle" r="90" cx="100" cy="100"></circle>
+                        </svg>
+                    </div>
+                    <div class="flex-container">
+                        <div class="icon-flash">
+                            {% if label is same as('success') %}
+                                <i class="material-icons">check</i>
+                            {% elseif label is same as('warning') %}
+                                <i class="material-icons">warning</i>
+                            {% elseif label is same as('danger') %}
+                                <i class="material-icons">error_outline</i>
+                            {% endif %}
+                        </div>
+                        <div class="content-flash">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div id="app"></div>
+
+        {% block body %}{% endblock %}
+
+        <script src="{{ asset('lib/jQuery-3.3.1/jQuery.js') }}" crossorigin="anonymous"></script>
+        <script src="{{ asset('build/runtime.js') }}" crossorigin="anonymous"></script>
+        <script src="{{ asset('build/js/main.js') }}" crossorigin="anonymous"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

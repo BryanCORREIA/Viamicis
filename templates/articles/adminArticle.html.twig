@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.createdAt|date }}</p>
+    <div>{{ article.content|raw }}</div>
+    <a href="/article/valider/{{ article.id }}">VALIDER</a>
+    <a>REFUSER</a>
+{% endblock %}

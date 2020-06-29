@@ -1,0 +1,97 @@
+{% extends 'base-security.html.twig' %}
+
+{% block title %}Espace connexion{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/css/security.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('succes') %}
+        <div id="app" data-message="{{ message }}"></div>
+    {% endfor %}
+
+    <div class="box-login">
+        <div class="security-background">
+            <img src="{{ asset('res/caravane.jpg') }}" alt="">
+        </div>
+        <div class="box-form-security"></div>
+        <div class="box">
+            <div class="box-logo">
+                <img src="https://cdn.discordapp.com/attachments/387598639532605453/669123040172441600/tmp.png" alt="">
+                <h1>Viamicis</h1>
+            </div>
+            <div class="box-content">
+                <div class="form-login open">
+                    <h2 class="padding-top">Connectez-vous à votre compte.</h2>
+                    <div class="box-form">
+                        <form action="{{ path('security_login_submitted')}}" method="post">
+                            <div class="box-shadow input-stack input-stack-space ">
+                                <input type="text" placeholder="Adresse mail" name="_username" value="{{ last_username }}">
+                                <input class="no-b-top" type="password" placeholder="Mot de passe" name="_password">
+                            </div>
+                            <div class="form-links">
+                                <a href="#">Mot de passe oublié ?</a>
+                                <button type="submit">Valider</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="form-signin">
+                    <h2>Enregistrez votre compte.</h2>
+                    {{ form_start(form, { 'action' : path('security_signup_submitted') }) }}
+                        <div class="box-shadow input-stack input-stack-line">
+                            <div class="columns-4">
+                                {{ form_widget(form.identity.firstname) }}
+                            </div>
+                            <div class="columns-4">
+                                {{ form_widget(form.identity.lastname) }}
+                            </div>
+                            <div class="columns-4">
+                                {{ form_widget(form.identity.birth) }}
+                            </div>
+                            <div class="columns-8">
+                                {{ form_widget(form.email) }}
+                            </div>
+                            <div class="columns-4">
+                                {{ form_widget(form.identity.phone) }}
+                            </div>
+                            <div class="columns-12">
+                                {{ form_widget(form.identity.address) }}
+                            </div>
+                            <div class="columns-12">
+                                {{ form_widget(form.identity.complement) }}
+                            </div>
+                            <div class="columns-4">
+                                {{ form_widget(form.identity.city) }}
+                            </div>
+                            <div class="columns-4">
+                                {{ form_widget(form.identity.cp) }}
+                            </div>
+                            <div class="columns-4">
+                                {{ form_widget(form.identity.country) }}
+                            </div>
+                            <div class="columns-6">
+                                {{ form_widget(form.password.first) }}
+                            </div>
+                            <div class="columns-6">
+                                {{ form_widget(form.password.second) }}
+                            </div>
+                        </div>
+                        <div class="form-links flex-align-right">
+                            <button type="submit">Valider</button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn-switch">S'enregistrer</button>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('vue/default') }}
+    <script src="{{ asset('build/Cleave.js') }}"></script>
+    <script src="{{ asset('build/CleavePhoneFr.js') }}"></script>
+    <script src="{{ asset('build/js/security.js') }}"></script>
+{% endblock %}

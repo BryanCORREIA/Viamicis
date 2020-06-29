@@ -2,11 +2,31 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{% endblock %} - Viamicis</title>
+        {{ encore_entry_link_tags('vue/vuesax') }}
+        {{ encore_entry_link_tags('vue/icon') }}
+        {{ encore_entry_link_tags('css/app') }}
+        <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <header class="top-default nav-header">
+            <div class="box-logo">
+                <img src="https://cdn.discordapp.com/attachments/387598639532605453/669123040172441600/tmp.png" alt="">
+            </div>
+            <nav>
+                <a href="#">Proposer un voyage</a>
+                <a href="#">Trouver un groupe</a>
+                <a href="#">Nos itinéraires</a>
+            </nav>
+            <div class="box-links-nav">
+                <a href="#"><i class="material-icons">search</i></a>
+                <a href="#"><i class="material-icons">person</i></a>
+            </div>
+        </header>
+
         {% block body %}{% endblock %}
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>

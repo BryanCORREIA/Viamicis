@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="box-presentation"></div>
+    <div class="container">
+        <div id="app"></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('vue/default') }}
+{% endblock %}
