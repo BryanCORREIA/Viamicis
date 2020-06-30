@@ -54,7 +54,7 @@ class Articles
     private $users;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="smallint")
      */
     private $Valide;
 
@@ -159,12 +159,12 @@ class Articles
         return $this;
     }
 
-    public function getValide(): ?bool
+    public function getValide(): ?int
     {
         return $this->Valide;
     }
 
-    public function setValide(bool $Valide): self
+    public function setValide(int $Valide): self
     {
         $this->Valide = $Valide;
 

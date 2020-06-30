@@ -19,7 +19,7 @@ class ArticlesController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator)
     {
-        $donnees = $this->getDoctrine()->getRepository(Articles::Class)->findBy(['Valide'=>true],
+        $donnees = $this->getDoctrine()->getRepository(Articles::Class)->findBy(['Valide'=>1],
             ['created_at'=>'desc']);
         $articles = $paginator->paginate(
           $donnees, //On passe les données articles
@@ -37,7 +37,7 @@ class ArticlesController extends AbstractController
      */
     public function administration(Request $request, PaginatorInterface $paginator)
     {
-        $donnees = $this->getDoctrine()->getRepository(Articles::Class)->findBy(['Valide'=>false],
+        $donnees = $this->getDoctrine()->getRepository(Articles::Class)->findBy(['Valide'=>-1],
             ['created_at'=>'desc']);
         $articles = $paginator->paginate(
             $donnees, //On passe les données articles
@@ -63,7 +63,7 @@ class ArticlesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $article->setUsers($this->getUser());
             $article->setCreatedAt(new \DateTime('now'));
-            $article->setValide(false);
+            $article->setValide(-1);
             $doctrine = $this->getDoctrine()->getManager();
             $doctrine->persist($article);
             $doctrine->flush();
@@ -148,13 +148,44 @@ class ArticlesController extends AbstractController
         }
         if ($article){
             $em = $this->getDoctrine()->getManager();
-            $article->setValide(true);
+            $article->setValide(1);
             $em->persist($article);
             $em->flush();
 
         }
 
-        $donnees = $this->getDoctrine()->getRepository(Articles::Class)->findBy(['Valide'=>true],
+        $donnees = $this->getDoctrine()->getRepository(Articles::Class)->findBy(['Valide'=>1],
+            ['created_at'=>'desc']);
+        $articles = $paginator->paginate(
+            $donnees, //On passe les données articles
+            $request->query->getInt('page', 1), //Numéro de la page en cours et sinon 1 par défault
+            5 //Nombre d'lément par page
+        );
+        return $this->render('articles/index.html.twig', [
+            'articles' => $articles
+
+        ]);
+    }
+
+    /**
+     * @Route("/article/refuser/{id}", name="adminArticlesValider")
+     */
+    public function adminArticlesRefuser($id, Request $request,  PaginatorInterface $paginator){
+        // On récupère l'articles correspondant a l'id
+        $article = $this->getDoctrine()->getRepository(Articles::class)->findOneBy(['id' => $id]);
+        if(!$article){
+            // Si aucun articles n'est trouvé, nous créons une exception
+            throw $this->createNotFoundException('L\'articles n\'existe pas');
+        }
+        if ($article){
+            $em = $this->getDoctrine()->getManager();
+            $article->setValide(0);
+            $em->persist($article);
+            $em->flush();
+
+        }
+
+        $donnees = $this->getDoctrine()->getRepository(Articles::Class)->findBy(['Valide'=>1],
             ['created_at'=>'desc']);
         $articles = $paginator->paginate(
             $donnees, //On passe les données articles
