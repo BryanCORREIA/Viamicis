@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Domain\Api\Trip\AddTripAction;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -78,10 +80,16 @@ class Trip
      */
     private $enabled;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Wish", mappedBy="trip")
+     */
+    private $wishes;
+
     public function __construct()
     {
         $this->createdAt    = new \DateTime();
         $this->enabled      = true;
+        $this->wishes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -262,5 +270,36 @@ class Trip
         $trip->creator      = $action->creator;
 
         return $trip;
+    }
+
+    /**
+     * @return Collection|Wish[]
+     */
+    public function getWishes(): Collection
+    {
+        return $this->wishes;
+    }
+
+    public function addWish(Wish $wish): self
+    {
+        if (!$this->wishes->contains($wish)) {
+            $this->wishes[] = $wish;
+            $wish->setTrip($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWish(Wish $wish): self
+    {
+        if ($this->wishes->contains($wish)) {
+            $this->wishes->removeElement($wish);
+            // set the owning side to null (unless already changed)
+            if ($wish->getTrip() === $this) {
+                $wish->setTrip(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -18,21 +18,21 @@
                         :to="{ name: 'joinTrip' }"
                         class="card_link w-30"
                 >
-                    <span class="icon__link"><i class="fal fa-search"></i></span>
+                    <img src="/res/search-lite-grey.gif" alt="">
                     <span class="text__link">Rechercher un voyage</span>
                 </router-link>
                 <router-link
                         :to="{ name: 'addTrip' }"
                         class="card_link w-30"
                 >
-                    <span class="icon__link"><i class="fal fa-plus-circle"></i></span>
+                    <img src="/res/add.gif" alt="">
                     <span class="text__link">Ajouter un voyage</span>
                 </router-link>
                 <router-link
                         :to="{ name: 'dashboard' }"
                         class="card_link w-30"
                 >
-                    <span class="icon__link"><i class="fal fa-eye"></i></span>
+                    <img src="/res/fly-light.gif" alt="">
                     <span class="text__link">Consulter mes voyages</span>
                 </router-link>
             </div>

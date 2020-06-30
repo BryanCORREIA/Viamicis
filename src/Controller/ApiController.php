@@ -7,7 +7,11 @@ use App\Domain\Api\Trip\AddTripHandler;
 use App\Domain\Api\Trip\GetAllTripAction;
 use App\Domain\Api\Trip\GetAllTripHandler;
 use App\Domain\Api\Trip\GetTripHandler;
+use App\Entity\Trip;
+use App\Entity\Wish;
+use Doctrine\DBAL\Exception\DatabaseObjectExistsException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +19,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class ApiController extends AbstractController
 {
@@ -101,5 +106,28 @@ class ApiController extends AbstractController
         $trip = $serializer->serialize($trip, 'json');
 
         return $this->json($trip);
+    }
+
+    public function wishTrip(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $trip = $em->getRepository(Trip::class)->findOneBy(['id' => $request->request->get('trip')]);
+
+        if (null === $trip) {
+            throw new NotFoundResourceException();
+        }
+
+        if ($em->getRepository(Wish::class)->findOneBy(['user' => $this->getUser(), 'trip' => $trip])) {
+            throw new Exception();
+        }
+
+        $wish = new Wish();
+
+        $wish->setUser($this->getUser());
+        $wish->setTrip($trip);
+
+        $em->persist($wish);
+        $em->flush();
+
+        return $this->json('OK');
     }
 }

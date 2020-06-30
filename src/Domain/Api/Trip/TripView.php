@@ -4,6 +4,7 @@ namespace App\Domain\Api\Trip;
 
 use App\Entity\Trip;
 use App\Entity\User;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class TripView
 {
@@ -67,8 +68,31 @@ class TripView
      */
     public $description;
 
+    /**
+     * @var string
+     */
+    public $creatorAge;
+
+    /**
+     * @var string
+     */
+    public $creatorLoc;
+
+    /**
+     * @var string
+     */
+    public $creatorPhone;
+
+    /**
+     * @var array
+     */
+    public $wishes;
+
     public static function build(Trip $trip, User $userConnected)
     {
+        $birth = $trip->getCreator()->getIdentity()->getBirth();
+        $diff = $birth->diff(new \DateTime('now'));
+
         $view = new self();
 
         $view->id           = $trip->getId();
@@ -77,12 +101,24 @@ class TripView
         $view->isCreator    = ($userConnected == $trip->getCreator());
         $view->creator      = $trip->getCreator()->getIdentity()->getFullName();
         $view->creatorPic   = $trip->getCreator()->getIdentity()->getPicture();
+        $view->creatorAge   = $diff->format('%y');
+        $view->creatorPhone = $trip->getCreator()->getIdentity()->getPhone();
+        $view->creatorLoc   = $trip->getCreator()->getIdentity()->getCity() . ", " . $trip->getCreator()->getIdentity()->getCountry();
         $view->registrant   = 0;
         $view->date         = $trip->getBeginAt()->format('j / m / Y');
         $view->days         = $trip->getDays();
         $view->travelers    = $trip->getTravelers();
         $view->country      = $trip->getCountry();
-        $view->description   = $trip->getDescription();
+        $view->description  = $trip->getDescription();
+        $view->wishes       = [];
+
+        foreach ($trip->getWishes() as $wish) {
+            $view->wishes[] = [
+                'userPic' => $wish->getUser()->getIdentity()->getPicture(),
+                'userFull' => $wish->getUser()->getIdentity()->getFullName(),
+                'userId' => $wish->getUser()->getId()
+            ];
+        }
 
         return $view;
     }

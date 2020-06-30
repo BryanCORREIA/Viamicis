@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Entity\Embedded\Identity;
 use App\Entity\Embedded\Parameters;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -46,11 +48,17 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Wish", mappedBy="user")
+     */
+    private $wishes;
+
+    /**
      * User constructor.
      */
     public function __construct() {
         $this->roles = ['ROLE_USER'];
         $this->identity = new Identity();
+        $this->wishes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,5 +169,36 @@ class User implements UserInterface
     public function setParameters($parameters): void
     {
         $this->parameters = $parameters;
+    }
+
+    /**
+     * @return Collection|Wish[]
+     */
+    public function getWishes(): Collection
+    {
+        return $this->wishes;
+    }
+
+    public function addWish(Wish $wish): self
+    {
+        if (!$this->wishes->contains($wish)) {
+            $this->wishes[] = $wish;
+            $wish->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWish(Wish $wish): self
+    {
+        if ($this->wishes->contains($wish)) {
+            $this->wishes->removeElement($wish);
+            // set the owning side to null (unless already changed)
+            if ($wish->getUser() === $this) {
+                $wish->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

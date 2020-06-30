@@ -13,3 +13,7 @@ api_get_all_trip:
 api_get_trip:
   path: /get-trip/{id}
   controller: App\Controller\ApiController::getTrip
+
+api_wish_trip:
+  path: /want-trip
+  controller: App\Controller\ApiController::wishTrip
