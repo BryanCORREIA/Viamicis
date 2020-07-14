@@ -168,7 +168,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/article/refuser/{id}", name="adminArticlesValider")
+     * @Route("/article/refuser/{id}", name="adminArticlesRefuser")
      */
     public function adminArticlesRefuser($id, Request $request,  PaginatorInterface $paginator){
         // On récupère l'articles correspondant a l'id

@@ -85,11 +85,17 @@ class Trip
      */
     private $wishes;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Conversation::class, mappedBy="trip", cascade={"persist", "remove"})
+     */
+    private $conversation;
+
     public function __construct()
     {
         $this->createdAt    = new \DateTime();
         $this->enabled      = true;
         $this->wishes = new ArrayCollection();
+        $this->tchats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -298,6 +304,23 @@ class Trip
             if ($wish->getTrip() === $this) {
                 $wish->setTrip(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getConversation(): ?Conversation
+    {
+        return $this->conversation;
+    }
+
+    public function setConversation(Conversation $conversation): self
+    {
+        $this->conversation = $conversation;
+
+        // set the owning side of the relation if necessary
+        if ($conversation->getTrip() !== $this) {
+            $conversation->setTrip($this);
         }
 
         return $this;

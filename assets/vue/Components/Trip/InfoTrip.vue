@@ -70,6 +70,19 @@
                             <p>{{ trip.creatorPhone }}</p>
                         </div>
                     </div>
+                    <div class="particants_list">
+                        <h5>Liste des participants</h5>
+                        <div class="group_info">
+                            <vs-avatar-group class="justify-content-left">
+                                <div v-for="participant in trip.participants">
+                                    <vs-avatar>
+                                        <img :src="participant.userPic" alt="">
+                                    </vs-avatar>
+                                </div>
+                            </vs-avatar-group>
+                            <p>{{ (trip.travelers - trip.participants.length) > 1 ? (trip.travelers - trip.participants.length) + ' places restantes' : (trip.travelers - trip.participants.length) + ' place restante' }} </p>
+                        </div>
+                    </div>
                     <div class="join-trip">
                         <vs-button v-if="!trip.isCreator" @click="joinTrip=!joinTrip">Rejoindre ce voyage</vs-button>
                         <vs-button v-if="trip.isCreator" @click="wishTrip=!wishTrip">{{ trip.wishes.length }} {{ trip.wishes.length > 1 ? 'demandes' : 'demande' }} en attente</vs-button>
@@ -116,8 +129,8 @@
                                <p>{{ wish.userFull }}</p>
 
                                <div class="wish-buttons">
-                                   <vs-button danger class="ans-no">Refuser</vs-button>
-                                   <vs-button success class="ans-yes">Accepter</vs-button>
+                                   <vs-button danger class="ans-no" @click="unacceptUser(wish.userId)">Refuser</vs-button>
+                                   <vs-button success class="ans-yes" @click="acceptUser(wish.userId)">Accepter</vs-button>
                                </div>
                            </div>
                        </div>
@@ -148,14 +161,17 @@
             wishTrip: false
         }),
         mounted() {
-            axios
-                .get(`/api/get-trip/${this.$route.params.id}`)
-                .then(response => {
-                    this.trip = JSON.parse(response.data);
-                })
-            ;
+            this.reloadTrip();
         },
         methods: {
+            reloadTrip() {
+                axios
+                    .get(`/api/get-trip/${this.$route.params.id}`)
+                    .then(response => {
+                        this.trip = JSON.parse(response.data);
+                    })
+                ;
+            },
             wantTrip() {
                 let bodyFormData = new FormData();
                 bodyFormData.set('trip', this.trip.id);
@@ -176,7 +192,63 @@
                             duration: 6000,
                             title: this.trip.title,
                             text: 'Votre demande pour rejoindre ce voyage a bien été enregistrée et envoyée au créateur de ce-dernier.'
-                        })
+                        });
+                        this.reloadTrip();
+                    })
+                ;
+            },
+            acceptUser(id) {
+                let bodyFormData = new FormData();
+                bodyFormData.set('trip', this.trip.id);
+                bodyFormData.set('user', id);
+                bodyFormData.set('accepted', '1');
+
+                axios
+                ({
+                    method: 'post',
+                    url: '/api/trip/wish',
+                    data: bodyFormData,
+                    headers: {'Content-Type': 'multipart/form-data' }
+                })
+                    .then(response => {
+                        this.wishTrip = false;
+                        const noti = this.$vs.notification({
+                            sticky: true,
+                            color: 'success',
+                            position: 'top-left',
+                            duration: 6000,
+                            title: this.trip.title,
+                            text: 'Le profil a bien été accepté.'
+                        });
+                        this.reloadTrip();
+                    })
+                ;
+            },
+
+            unacceptUser(id) {
+                let bodyFormData = new FormData();
+                bodyFormData.set('trip', this.trip.id);
+                bodyFormData.set('user', id);
+                bodyFormData.set('accepted', '0');
+
+                axios
+                ({
+                    method: 'post',
+                    url: '/api/trip/wish',
+                    data: bodyFormData,
+                    headers: {'Content-Type': 'multipart/form-data' }
+                })
+                    .then(response => {
+                        this.wishTrip = false;
+                        const noti = this.$vs.notification({
+                            sticky: true,
+                            color: 'danger',
+                            position: 'top-left',
+                            duration: 6000,
+                            title: this.trip.title,
+                            text: 'Le profil a bien été refusé.'
+                        });
+                        this.reloadTrip();
                     })
                 ;
             }

@@ -88,6 +88,11 @@ class TripView
      */
     public $wishes;
 
+    /**
+     * @var array
+     */
+    public $participants;
+
     public static function build(Trip $trip, User $userConnected)
     {
         $birth = $trip->getCreator()->getIdentity()->getBirth();
@@ -95,29 +100,43 @@ class TripView
 
         $view = new self();
 
-        $view->id           = $trip->getId();
-        $view->createdAt    = $trip->getCreatedAt()->format('j / m / Y');
-        $view->title        = $trip->getTitle();
-        $view->isCreator    = ($userConnected == $trip->getCreator());
-        $view->creator      = $trip->getCreator()->getIdentity()->getFullName();
-        $view->creatorPic   = $trip->getCreator()->getIdentity()->getPicture();
-        $view->creatorAge   = $diff->format('%y');
-        $view->creatorPhone = $trip->getCreator()->getIdentity()->getPhone();
-        $view->creatorLoc   = $trip->getCreator()->getIdentity()->getCity() . ", " . $trip->getCreator()->getIdentity()->getCountry();
-        $view->registrant   = 0;
-        $view->date         = $trip->getBeginAt()->format('j / m / Y');
-        $view->days         = $trip->getDays();
-        $view->travelers    = $trip->getTravelers();
-        $view->country      = $trip->getCountry();
-        $view->description  = $trip->getDescription();
-        $view->wishes       = [];
+        $view->id               = $trip->getId();
+        $view->createdAt        = $trip->getCreatedAt()->format('j / m / Y');
+        $view->title            = $trip->getTitle();
+        $view->isCreator        = ($userConnected == $trip->getCreator());
+        $view->creator          = $trip->getCreator()->getIdentity()->getFullName();
+        $view->creatorPic       = $trip->getCreator()->getIdentity()->getPicture();
+        $view->creatorAge       = $diff->format('%y');
+        $view->creatorPhone     = $trip->getCreator()->getIdentity()->getPhone();
+        $view->creatorLoc       = $trip->getCreator()->getIdentity()->getCity() . ", " . $trip->getCreator()->getIdentity()->getCountry();
+        $view->registrant       = 0;
+        $view->date             = $trip->getBeginAt()->format('j / m / Y');
+        $view->days             = $trip->getDays();
+        $view->travelers        = $trip->getTravelers();
+        $view->country          = $trip->getCountry();
+        $view->description      = $trip->getDescription();
+        $view->wishes           = [];
+        $view->participants[]   = [
+            'userId' => $trip->getCreator()->getId(),
+            'userPic' => $trip->getCreator()->getIdentity()->getPicture(),
+            'userFull' => $trip->getCreator()->getIdentity()->getFullName()
+        ];
 
         foreach ($trip->getWishes() as $wish) {
-            $view->wishes[] = [
-                'userPic' => $wish->getUser()->getIdentity()->getPicture(),
-                'userFull' => $wish->getUser()->getIdentity()->getFullName(),
-                'userId' => $wish->getUser()->getId()
-            ];
+            if (-1 == $wish->getAccepted()) {
+                $view->wishes[] = [
+                    'userId' => $wish->getUser()->getId(),
+                    'userPic' => $wish->getUser()->getIdentity()->getPicture(),
+                    'userFull' => $wish->getUser()->getIdentity()->getFullName()
+                ];
+            } elseif (1 == $wish->getAccepted()) {
+                $view->participants[] = [
+                    'userId' => $wish->getUser()->getId(),
+                    'userPic' => $wish->getUser()->getIdentity()->getPicture(),
+                    'userFull' => $wish->getUser()->getIdentity()->getFullName()
+                ];
+                dump($view->participants);
+            }
         }
 
         return $view;

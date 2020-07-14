@@ -85,12 +85,12 @@ class Wish
         return $this;
     }
 
-    public function getAccepted(): ?bool
+    public function getAccepted(): ?int
     {
         return $this->accepted;
     }
 
-    public function setAccepted(bool $accepted): self
+    public function setAccepted($accepted): self
     {
         $this->accepted = $accepted;
 

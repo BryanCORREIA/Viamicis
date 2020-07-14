@@ -17,3 +17,15 @@ api_get_trip:
 api_wish_trip:
   path: /want-trip
   controller: App\Controller\ApiController::wishTrip
+
+api_wish_trip_upd:
+  path: /trip/wish
+  controller: App\Controller\ApiController::wishTripUpdate
+
+api_conversertions:
+  path: /tchat
+  controller: App\Controller\ApiController::getAllConversations
+
+api_conversertion_message:
+  path: /tchat/messages
+  controller: App\Controller\ApiController::getAllMessages

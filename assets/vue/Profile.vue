@@ -56,7 +56,7 @@
                             <i class="fal fa-home-lg-alt"></i>
                         </router-link>
                         <template #tooltip>
-                            Dashboard
+                            Tableau de bord
                         </template>
                     </vs-tooltip>
                     <vs-tooltip right>
@@ -70,7 +70,17 @@
                             Voyage
                         </template>
                     </vs-tooltip>
-                    <a href="#"><i class="fal fa-comments-alt"></i></a>
+                    <vs-tooltip right>
+                        <router-link
+                                :to="{ name: 'listTchat' }"
+                                v-bind:class="{ 'sidenav-link-active': currentRoute('listTchat') }"
+                        >
+                            <i class="fal fa-comments-alt"></i>
+                        </router-link>
+                        <template #tooltip>
+                            Messages
+                        </template>
+                    </vs-tooltip>
                     <a href="#"><i class="fal fa-book-open"></i></a>
                 </div>
                 <div class="nav__bottom">

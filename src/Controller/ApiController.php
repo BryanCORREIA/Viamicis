@@ -7,7 +7,11 @@ use App\Domain\Api\Trip\AddTripHandler;
 use App\Domain\Api\Trip\GetAllTripAction;
 use App\Domain\Api\Trip\GetAllTripHandler;
 use App\Domain\Api\Trip\GetTripHandler;
+use App\Entity\Conversation;
+use App\Entity\Participant;
+use App\Entity\Tchat;
 use App\Entity\Trip;
+use App\Entity\User;
 use App\Entity\Wish;
 use Doctrine\DBAL\Exception\DatabaseObjectExistsException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,11 +61,6 @@ class ApiController extends AbstractController
 
     public function addTrip(Request $request)
     {
-        dump($request->isXmlHttpRequest());
-        if (!$request->isXmlHttpRequest()) {
-            return $this->redirectToRoute('index');
-        }
-
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
 
@@ -129,5 +128,50 @@ class ApiController extends AbstractController
         $em->flush();
 
         return $this->json('OK');
+    }
+
+    public function wishTripUpdate(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $trip = $em->getRepository(Trip::class)->findOneBy(['id' => $request->request->get('trip')]);
+        $user = $em->getRepository(User::class)->findOneBy(['id' => $request->request->get('user')]);
+        $wish = $em->getRepository(Wish::class)->findOneBy(['user' => $user, 'trip' => $trip]);
+        $conv = $em->getRepository(Conversation::class)->findOneBy(['trip' => $trip]);
+
+        if (null === $wish) {
+            throw new \Exception();
+        }
+
+        if ($request->request->get('accepted') == 1) {
+            $participant = new Participant();
+
+            $participant->setUser($user);
+            $participant->setConversation($conv);
+
+            $em->persist($participant);
+        }
+
+        if ($request->request->get('accepted') == 0) {
+            $participant = $em->getRepository(Participant::class)->findOneBy(['trip' => $trip, 'user' => $user]);
+
+            if ($participant) {
+                $em->remove($participant);
+            }
+        }
+
+        $wish->setAccepted($request->request->get('accepted'));
+
+        $em->persist($wish);
+        $em->flush();
+
+        return $this->json('OK');
+    }
+
+    public function getAllConversations(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getUser();
+        $conversations = $em->getRepository(Wish::class)->findBy(['user' => $user, 'accepted' => 1]);
+
+
     }
 }
