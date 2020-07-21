@@ -1,0 +1,21 @@
+{
+  "build/Cleave.js": "/build/Cleave.js",
+  "build/CleavePhoneFr.js": "/build/CleavePhoneFr.js",
+  "build/boxicons.js": "/build/boxicons.js",
+  "build/css/app.css": "/build/css/app.css",
+  "build/css/home.css": "/build/css/home.css",
+  "build/css/profile.css": "/build/css/profile.css",
+  "build/css/security.css": "/build/css/security.css",
+  "build/feather.js": "/build/feather.js",
+  "build/js/main.js": "/build/js/main.js",
+  "build/js/security.js": "/build/js/security.js",
+  "build/runtime.js": "/build/runtime.js",
+  "build/vue/icon.css": "/build/vue/icon.css",
+  "build/vue/profile__vue.js": "/build/vue/profile__vue.js",
+  "build/vue/vuesax.css": "/build/vue/vuesax.css",
+  "build/fonts/MaterialIcons-Regular.woff2": "/build/fonts/MaterialIcons-Regular.0509ab09.woff2",
+  "build/fonts/MaterialIcons-Regular.woff": "/build/fonts/MaterialIcons-Regular.29b882f0.woff",
+  "build/fonts/MaterialIcons-Regular.eot": "/build/fonts/MaterialIcons-Regular.96c47680.eot",
+  "build/fonts/MaterialIcons-Regular.ttf": "/build/fonts/MaterialIcons-Regular.d120c85b.ttf",
+  "build/images/caravane.jpg": "/build/images/caravane.04276b0a.jpg"
+}

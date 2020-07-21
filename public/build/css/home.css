@@ -1,0 +1,38 @@
+header {
+  z-index: 900;
+  background-color: white;
+  border-bottom-left-radius: 17px;
+  border-bottom-right-radius: 17px;
+}
+
+.box-presentation {
+  height: 100vh;
+  background-image: url(/build/images/caravane.04276b0a.jpg);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.box-presentation .group-illus {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.box-presentation .group-illus img {
+  width: 45%;
+}
+
+.box-presentation .present-text {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  background-color: white;
+  padding: 20px;
+  width: 30%;
+  text-align: justify;
+}
+
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vaG9tZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsWUFBWTtFQUNaLHVCQUF1QjtFQUN2QiwrQkFBK0I7RUFDL0IsZ0NBQWdDO0FBQ2xDOztBQUVBO0VBQ0UsYUFBYTtFQUNiLCtDQUFzRDtFQUN0RCxzQkFBc0I7RUFDdEIsMkJBQTJCO0VBQzNCLGdCQUFnQjtFQUNoQixrQkFBa0I7QUFDcEI7O0FBUEE7RUFTSSxrQkFBa0I7RUFDbEIsT0FBTztFQUNQLFNBQVM7QUFFYjs7QUFiQTtFQWNNLFVBQVU7QUFHaEI7O0FBakJBO0VBbUJJLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsWUFBWTtFQUNaLHVCQUF1QjtFQUN2QixhQUFhO0VBQ2IsVUFBVTtFQUNWLG1CQUFtQjtBQUV2QiIsImZpbGUiOiJjc3MvaG9tZS5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJoZWFkZXIge1xuICB6LWluZGV4OiA5MDA7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICBib3JkZXItYm90dG9tLWxlZnQtcmFkaXVzOiAxN3B4O1xuICBib3JkZXItYm90dG9tLXJpZ2h0LXJhZGl1czogMTdweDtcbn1cblxuLmJveC1wcmVzZW50YXRpb24ge1xuICBoZWlnaHQ6IDEwMHZoO1xuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoXCIuLi8uLi9wdWJsaWMvcmVzL2NhcmF2YW5lLmpwZ1wiKTtcbiAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG5cbiAgLmdyb3VwLWlsbHVzIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgbGVmdDogMDtcbiAgICBib3R0b206IDA7XG5cbiAgICBpbWcge1xuICAgICAgd2lkdGg6IDQ1JTtcbiAgICB9XG4gIH1cblxuICAucHJlc2VudC10ZXh0IHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgcmlnaHQ6IDE1cHg7XG4gICAgYm90dG9tOiAxNXB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICAgIHBhZGRpbmc6IDIwcHg7XG4gICAgd2lkdGg6IDMwJTtcbiAgICB0ZXh0LWFsaWduOiBqdXN0aWZ5O1xuICB9XG59XG4iXSwic291cmNlUm9vdCI6IiJ9*/
