@@ -5,7 +5,7 @@
 {% block body %}
     <h1>{{ article.title }}</h1>
     <p>{{ article.createdAt|date }}</p>
-    <div>{{ article.content|raw }}</div>
+    <div>{{ article.content|raw|truncate(50) }}</div>
     <h2>Commentaites ({{ article.comments |length }})</h2>
     {% for comment in article.comments  %}
         <div>{{ comment.content }}</div>

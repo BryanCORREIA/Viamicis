@@ -128,8 +128,6 @@ class ArticlesController extends AbstractController
             // Si aucun articles n'est trouvé, nous créons une exception
             throw $this->createNotFoundException('L\'articles n\'existe pas');
         }
-
-
         // Si l'articles existe nous envoyons les données à la vue
         return $this->render('articles/adminArticle.html.twig', [
             'article'=> $article,
@@ -151,10 +149,9 @@ class ArticlesController extends AbstractController
             $article->setValide(1);
             $em->persist($article);
             $em->flush();
-
         }
 
-        $donnees = $this->getDoctrine()->getRepository(Articles::Class)->findBy(['Valide'=>1],
+        $donnees = $this->getDoctrine()->getRepository(Articles::Class)->findBy(['Valide'=>-1],
             ['created_at'=>'desc']);
         $articles = $paginator->paginate(
             $donnees, //On passe les données articles
@@ -168,7 +165,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/article/refuser/{id}", name="adminArticlesValider")
+     * @Route("/article/refuser/{id}", name="adminArticlesRefuser")
      */
     public function adminArticlesRefuser($id, Request $request,  PaginatorInterface $paginator){
         // On récupère l'articles correspondant a l'id
@@ -185,7 +182,7 @@ class ArticlesController extends AbstractController
 
         }
 
-        $donnees = $this->getDoctrine()->getRepository(Articles::Class)->findBy(['Valide'=>1],
+        $donnees = $this->getDoctrine()->getRepository(Articles::Class)->findBy(['Valide'=>-1],
             ['created_at'=>'desc']);
         $articles = $paginator->paginate(
             $donnees, //On passe les données articles
