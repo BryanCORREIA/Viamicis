@@ -9,7 +9,7 @@ header.nav-header {
   align-items: center;
 
   .box-logo {
-    width: 80px;
+    width: 40px;
     padding: 10px;
   }
 
@@ -22,6 +22,7 @@ header.nav-header {
       transition: 0.4s ease-in-out;
       position: relative;
       overflow: hidden;
+      color: #3C3C3B;
 
       &:after {
         position: absolute;
@@ -29,7 +30,7 @@ header.nav-header {
         left: 0;
         right: 0;
         content: '';
-        background-color: white;
+        background-color: #3C3C3B;
         height: 2px;
         width: 100%;
         transform: translateY(2px);

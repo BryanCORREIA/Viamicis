@@ -1,5 +1,8 @@
-header.top-default {
-  color: white;
+header {
+  z-index: 900;
+  background-color: white;
+  border-bottom-left-radius: 17px;
+  border-bottom-right-radius: 17px;
 }
 
 .box-presentation {
@@ -8,4 +11,25 @@ header.top-default {
   background-size: cover;
   background-position: center;
   overflow: hidden;
+  position: relative;
+
+  .group-illus {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    img {
+      width: 45%;
+    }
+  }
+
+  .present-text {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    background-color: white;
+    padding: 20px;
+    width: 30%;
+    text-align: justify;
+  }
 }
