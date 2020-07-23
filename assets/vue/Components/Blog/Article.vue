@@ -28,13 +28,15 @@
                                     danger
                                     flat
                                     class="btn-admin"
+                                    @click="refuse()"
                             >
                                 Refuser <i class="fad fa-times"></i>
                             </vs-button>
                             <vs-button
                                     success
                                     flat
-                                     class="btn-admin"
+                                    class="btn-admin"
+                                    @click="activate()"
                             >
                                 Valider <i class="fad fa-check"></i>
                             </vs-button>
@@ -78,6 +80,36 @@
             ;
         },
         methods: {
+            activate() {
+                axios
+                    .get(`/blog/article/${this.$route.params.slug}/activate`)
+                    .then(response => {
+                        if (response.data === 'true') {
+                            axios
+                                .get(`/blog/article/${this.$route.params.slug}`)
+                                .then(response => {
+                                    this.article = JSON.parse(response.data);
+                                })
+                            ;
+                        }
+                    })
+                ;
+            },
+            refuse() {
+                axios
+                    .get(`/blog/article/${this.$route.params.slug}/refuse`)
+                    .then(response => {
+                        if (response.data === 'true') {
+                            axios
+                                .get(`/blog/article/${this.$route.params.slug}`)
+                                .then(response => {
+                                    this.article = JSON.parse(response.data);
+                                })
+                            ;
+                        }
+                    })
+                ;
+            }
         }
     }
 </script>

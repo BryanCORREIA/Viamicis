@@ -87,4 +87,36 @@ class BlogController extends AbstractController
 
         return $this->json($article);
     }
+
+    public function activeArticle($slug) {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            return $this->json('false');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository(Articles::class)->findOneBy(['slug' => $slug]);
+
+        $article->setValide(1);
+
+        $em->persist($article);
+        $em->flush();
+
+        return $this->json('true');
+    }
+
+    public function refuseArticle($slug) {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            return $this->json('false');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository(Articles::class)->findOneBy(['slug' => $slug]);
+
+        $article->setValide(0);
+
+        $em->persist($article);
+        $em->flush();
+
+        return $this->json('true');
+    }
 }

@@ -67,3 +67,11 @@ blog_articles:
 blog_article:
     path: /blog/article/{slug}
     controller: App\Controller\BlogController::getArticle
+
+blog_article_active:
+    path: /blog/article/{slug}/activate
+    controller: App\Controller\BlogController::activeArticle
+
+blog_article_refuse:
+    path: /blog/article/{slug}/refuse
+    controller: App\Controller\BlogController::refuseArticle
