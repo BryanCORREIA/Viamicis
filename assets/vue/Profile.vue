@@ -1,11 +1,13 @@
 <template>
     <div class="profile__box" v-if="this.loaded">
         <header>
-            <div class="header__logo">
-                <img src="/res/logo-white.svg" alt="">
-            </div>
+            <a href="/">
+                <div class="header__logo">
+                    <img src="/res/logo-white.svg" alt="">
+                </div>
+            </a>
             <div class="header__content">
-                <h1>Viamicis</h1>
+                <a href="/"><h1>Viamicis</h1></a>
                 <router-link
                         :to="{ name: 'addTrip' }"
                         class="new__trip"
@@ -81,7 +83,16 @@
                             Messages
                         </template>
                     </vs-tooltip>
-                    <a href="#"><i class="fal fa-book-open"></i></a>
+                    <vs-tooltip right>
+                        <a
+                                href="/blog"
+                        >
+                            <i class="fal fa-book-open"></i>
+                        </a>
+                        <template #tooltip>
+                            Blog
+                        </template>
+                    </vs-tooltip>
                 </div>
                 <div class="nav__bottom">
                     <a href="#">
@@ -129,20 +140,14 @@
                         </vs-avatar>
                     </div>
 
-                    <div class="user__stats">
-                        <div class="stat">
-                            <p>Voyages</p>
-                            <div class="number__stat border-purple">
-                                <span>10</span>
-                            </div>
-                        </div>
-                        <div class="stat">
-                            <p>Messages</p>
-                            <div class="number__stat border-yellow">
-                                <span>178</span>
-                            </div>
-                        </div>
-                    </div>
+                    <vs-button
+                            block
+                            href="/deconnexion"
+                            flat
+                            style="font-family: Montserrat, sans-serif"
+                    >
+                        Déconnexion
+                    </vs-button>
                 </aside>
             </transition>
         </div>

@@ -1,0 +1,15 @@
+{% extends 'base-blog.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/css/blog.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div id="blog"></div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/vue/blog__vue.js') }}"></script>
+{% endblock %}

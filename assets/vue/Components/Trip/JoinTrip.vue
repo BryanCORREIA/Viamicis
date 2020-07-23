@@ -5,7 +5,7 @@
                 <router-link
                         :to="{ name: 'dashboard' }"
                 >
-                    Dashboard
+                    Tableau de bord
                 </router-link>
                 /
                 <router-link

@@ -6,10 +6,12 @@
         {{ encore_entry_link_tags('vue/vuesax') }}
         {{ encore_entry_link_tags('vue/icon') }}
         {{ encore_entry_link_tags('css/app') }}
+        <link href='{{ asset('res/lib/fontawesome/css/all.min.css') }}' rel='stylesheet'>
         <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+    <!--
         <header class="top-default nav-header">
             <div class="box-logo">
                 <img src="https://cdn.discordapp.com/attachments/387598639532605453/669123040172441600/tmp.png" alt="">
@@ -24,6 +26,7 @@
                 <a href="#"><i class="material-icons">person</i></a>
             </div>
         </header>
+    -->
 
         {% block body %}{% endblock %}
 

@@ -1,0 +1,449 @@
+.header-nav * {
+  font-family: Montserrat, sans-serif !important;
+
+  .header-logo {
+    width: 35px;
+  }
+
+  h1 {
+    margin-left: 10px;
+    font-size: 20px;
+  }
+}
+
+main {
+  margin-top: 100px;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.title-section {
+  padding: 40px 0 10px;
+  margin: 0;
+  letter-spacing: 0.4px;
+  text-transform: capitalize;
+
+  .heart-icon {
+    color: #C82829;
+    margin-right: 5px;
+  }
+
+  .sparkles-icon, .pen-icon {
+    color: #45B5B2;
+  }
+
+  .folder-icon {
+    color: #FBBC43;
+  }
+}
+
+.heart-section {
+  display: flex;
+
+  .main-post {
+    width: 60%;
+    padding: 20px 20px 20px 0;
+    box-sizing: border-box;
+
+    img {
+      border-radius: 5px;
+    }
+
+    .title-main-post {
+      font-size: 30px;
+      font-weight: 800;
+      margin: 0 0 20px;
+    }
+
+    .label-cat {
+      display: inline-block;
+      font-size: 12px;
+      margin: 25px 0 10px;
+      font-weight: 500;
+      color: #3adb76;
+    }
+
+    .beginning-text {
+      font-size: 14px;
+      opacity: 0.6;
+      margin-bottom: 20px;
+    }
+
+    .read-more {
+      font-family: Montserrat, sans-serif;
+      font-weight: 600;
+    }
+  }
+
+  .sub-post {
+    width: 40%;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .post {
+      display: flex;
+      margin-bottom: 20px;
+
+      .illustration-post {
+        display: block;
+        content: '';
+        width: 150px;
+        height: 150px;
+        background-image: url("https://cdn.dribbble.com/users/3178178/screenshots/7013817/the_caravan_by_patryk_wojciechowicz.png");
+        background-size: cover;
+        background-position: center;
+        border-radius: 5px;
+      }
+
+      .info-post {
+        flex: 1;
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .label-cat {
+          display: inline-block;
+          font-size: 12px;
+          margin: 0;
+          font-weight: 500;
+          color: #8959A8;
+        }
+
+        .title-sub-post {
+          font-size: 22px;
+          font-weight: 600;
+          margin: 15px 0;
+        }
+
+        .button-read-more {
+          font-family: Montserrat, sans-serif;
+          margin: 0 0;
+        }
+      }
+    }
+  }
+}
+
+.new-section {
+  .new-posts {
+    display: flex;
+    justify-content: space-between;
+
+    .new-post {
+      width: 30%;
+
+      .illustration-post {
+        display: block;
+        content: '';
+        height: 250px;
+        background-image: url("https://cdn.dribbble.com/users/3178178/screenshots/7013817/the_caravan_by_patryk_wojciechowicz.png");
+        background-size: cover;
+        background-position: center;
+        border-radius: 5px;
+      }
+
+      .label-cat {
+        display: inline-block;
+        font-size: 12px;
+        margin: 20px 0 0 0;
+        font-weight: 500;
+        color: #8959A8;
+      }
+
+      .title-sub-post {
+        font-size: 22px;
+        font-weight: 600;
+        margin: 15px 0;
+      }
+
+      .button-read-more {
+        font-family: Montserrat, sans-serif;
+        margin: 0 0;
+      }
+    }
+  }
+}
+
+.newsletter-section {
+  background-color: #1e2023;
+  color: white;
+  display: flex;
+  padding: 30px 100px 30px 50px;
+  margin: 50px 0;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+
+  .title-news {
+    width: 45%;
+
+    h3 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+  }
+
+  .input-section {
+    --vs-background: 30,32,35;
+    --vs-text: 255,255,255;
+    --vs-gray-1: 24,25,28;
+    --vs-gray-2: 20,20,23;
+    --vs-gray-3: 15,16,19;
+    --vs-gray-4: 10,11,14;
+    --vs-shadow-opacity: .3;
+    --vs-dark: 0,0,0;
+    --vs-background-opacity: .6;
+    width: 30%;
+
+    .vs-input {
+      font-size: 16px;
+      font-family: Montserrat, sans-serif;
+    }
+
+    .text-input input {
+      padding: 10px 20px;
+    }
+  }
+}
+
+.all-section {
+  .sub-post {
+    width: 100%;
+    padding: 20px 0;
+    box-sizing: border-box;
+
+    .post {
+      display: flex;
+      margin-bottom: 20px;
+
+      .illustration-post {
+        display: block;
+        content: '';
+        width: 200px;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 5px;
+      }
+
+      .info-post {
+        flex: 1;
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .label-cat {
+          display: inline-block;
+          font-size: 12px;
+          margin: 0;
+          font-weight: 500;
+          color: #8959A8;
+        }
+
+        .beginning-text {
+          font-size: 14px;
+        }
+
+        .title-sub-post {
+          font-size: 22px;
+          font-weight: 600;
+          margin: 15px 0;
+        }
+
+        .button-read-more {
+          font-family: Montserrat, sans-serif;
+          margin: 0 0;
+        }
+      }
+    }
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to, .fade-leave-active {
+  opacity: 0;
+}
+
+.translate-enter-active, .translate-leave-active {
+  transition: opacity .3s, transform .3s;
+}
+.translate-enter, .translate-leave-to, .translate-leave-active {
+  opacity: 0;
+  transform: translateX(200px);
+}
+
+.zoom-enter-active, .zoom-leave-active {
+  transition: opacity .3s, transform .3s;
+}
+.zoom-enter, .zoom-leave-to, .zoom-leave-active {
+  opacity: 0;
+  transform: scale(1.03);
+}
+
+.not-log {
+  display: flex;
+  flex-direction: column;
+
+  .gif-401 {
+    margin: 20px auto;
+    width: 30%;
+  }
+
+  .error-401 {
+    text-align: center;
+
+    .btn-center {
+      margin: 0 auto;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+.ck-editor__editable_inline {
+  min-height: 500px;
+}
+
+.input-title {
+  margin: 10px 0;
+}
+
+.input-title-in {
+  input {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+.ck-file-dialog-button {
+  display: none;
+}
+
+.success-icon {
+  color: #3adb76;
+}
+
+.container-article {
+  width: 60%;
+  margin: 0 auto;
+
+  .main-cat {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    margin: 0;
+    font-weight: 500;
+    color: #8959A8;
+    padding-top: 20px;
+  }
+
+  .article-illus {
+    margin: 20px 0 30px;
+    border-radius: 10px;
+  }
+
+  .title-article {
+    font-weight: 700;
+    font-size: 40px;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .creator {
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+  }
+
+  .created-at {
+    font-size: 14px;
+    opacity: 0.6;
+    margin: 0;
+    text-align: center;
+  }
+
+  p {
+    text-align: justify;
+    line-height: 22px;
+  }
+}
+
+.action-admin {
+  margin: 10px 0;
+}
+
+.content-tooltip {
+  .body {
+    display: flex;
+
+  }
+
+}
+
+.content-tooltip .body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.content-tooltip .body .vs-avatar-content {
+  margin-top: -30px;
+  border: 3px solid var(--vs-theme-layout);
+  box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.1);
+}
+.content-tooltip .body .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 0.55rem;
+  padding: 10px;
+  font-weight: normal;
+}
+.content-tooltip .body .text span {
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+.content-tooltip footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content-tooltip h4 {
+  padding: 8px;
+  margin: 0px;
+  text-align: left;
+}
+.content-tooltip p {
+  text-align: left;
+  padding: 0px;
+  margin: 0px;
+  line-height: 1rem;
+  padding-bottom: 5px;
+  padding-left: 8px;
+}
+
+.content-alert {
+  display: flex;
+  align-items: center;
+
+  p {
+    margin: 0 5px 0 0;
+  }
+
+  i {
+    font-size: 12px;
+    margin-left: 10px;
+  }
+}

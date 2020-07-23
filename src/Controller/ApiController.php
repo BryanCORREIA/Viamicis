@@ -172,6 +172,5 @@ class ApiController extends AbstractController
         $user = $this->getUser();
         $conversations = $em->getRepository(Wish::class)->findBy(['user' => $user, 'accepted' => 1]);
 
-
     }
 }

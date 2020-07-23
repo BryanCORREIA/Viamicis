@@ -2,9 +2,29 @@ index:
     path: /
     controller: App\Controller\DefaultController::index
 
+index_cgu:
+    path: /cgu
+    controller: App\Controller\DefaultController::cgu
+
+index_ml:
+    path: /mentions-legales
+    controller: App\Controller\DefaultController::ml
+
+index_conf:
+    path: /politique-de-confidentialite
+    controller: App\Controller\DefaultController::pdc
+
 api_route:
     resource: 'api_routes.yaml'
     prefix: '/api'
+
+security_check_user:
+    path: /check-user
+    controller: App\Controller\SecurityController::checkUser
+
+security_check_user_admin:
+    path: /check-user/admin
+    controller: App\Controller\SecurityController::checkUserAdmin
 
 security_login:
     path: /connexion
@@ -31,3 +51,19 @@ user_get:
 
 security_logout:
     path: /deconnexion
+
+blog_index:
+    path: /blog/
+    controller: App\Controller\BlogController::index
+
+blog_add:
+    path: /blog/add
+    controller: App\Controller\BlogController::addArticle
+
+blog_articles:
+    path: /blog/articles
+    controller: App\Controller\BlogController::getArticles
+
+blog_article:
+    path: /blog/article/{slug}
+    controller: App\Controller\BlogController::getArticle

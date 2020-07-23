@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
@@ -38,17 +39,13 @@ class Articles
      */
     private $updated_at;
 
-
-
-
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="articles", orphanRemoval=true)
      */
     private $comments;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $users;
@@ -56,11 +53,27 @@ class Articles
     /**
      * @ORM\Column(type="smallint")
      */
-    private $Valide;
+    private $valide;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $illustration;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=255, unique=true)
+     */
+    private $slug;
 
     public function __construct()
     {
+        $this->valide = -1;
+        $this->created_at = new \DateTime();
         $this->comments = new ArrayCollection();
+
+        $rdm = rand(1, 4);
+        $this->illustration = 'blog-'. $rdm .'.png';
     }
 
     public function getId(): ?int
@@ -161,13 +174,34 @@ class Articles
 
     public function getValide(): ?int
     {
-        return $this->Valide;
+        return $this->valide;
     }
 
-    public function setValide(int $Valide): self
+    public function setValide(int $valide): self
     {
-        $this->Valide = $Valide;
+        $this->valide = $valide;
 
         return $this;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIllustration()
+    {
+        return $this->illustration;
+    }
+
+    /**
+     * @param mixed $illustration
+     */
+    public function setIllustration($illustration): void
+    {
+        $this->illustration = $illustration;
     }
 }

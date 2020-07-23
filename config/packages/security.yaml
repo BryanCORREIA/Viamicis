@@ -23,6 +23,7 @@ security:
             form_login:
                 login_path: security_login
                 check_path: security_login_submitted
+                use_referer: true
             logout:
                 path:   security_logout
                 target: /
@@ -31,3 +32,4 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profil, roles: ROLE_USER }
         - { path: ^/api, roles: ROLE_USER }
+        - { path: ^/blog/#/rediger, roles: ROLE_USER }

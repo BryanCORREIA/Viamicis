@@ -1,16 +1,16 @@
 {
     "devDependencies": {
-        "@symfony/webpack-encore": "^0.28.3",
+        "@symfony/webpack-encore": "^0.30.2",
         "core-js": "^3.6.5",
-        "node-sass": "^4.13.1",
+        "node-sass": "^4.14.1",
         "regenerator-runtime": "^0.13.5",
         "sass-loader": "^7.3.1",
         "ts-loader": "^5.4.5",
-        "typescript": "^3.8.3",
-        "vee-validate": "^3.2.5",
+        "typescript": "^3.9.7",
+        "vee-validate": "^3.3.7",
         "vue-form-wizard": "^0.8.4",
-        "vue-loader": "^15.9.1",
-        "vue-router": "^3.1.6",
+        "vue-loader": "^15.9.3",
+        "vue-router": "^3.3.4",
         "vue-template-compiler": "^2.6.11",
         "webpack-notifier": "^1.6.0"
     },
@@ -23,14 +23,16 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^20.0.0",
+        "@ckeditor/ckeditor5-vue": "^1.0.1",
         "axios": "^0.19.2",
         "boxicons": "^2.0.5",
-        "cleave.js": "^1.5.10",
+        "cleave.js": "^1.6.0",
         "feather-icons": "^4.28.0",
-        "jquery": "^3.5.0",
+        "jquery": "^3.5.1",
         "material-icons": "^0.3.1",
-        "moment": "^2.24.0",
+        "moment": "^2.27.0",
         "vue": "^2.6.11",
-        "vuesax": "^4.0.1-alpha.16"
+        "vuesax": "^4.0.1-alpha.23"
     }
 }

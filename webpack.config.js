@@ -33,13 +33,17 @@ Encore
     .addStyleEntry('css/home', './assets/scss/home.scss')
     .addStyleEntry('css/security', './assets/scss/security.scss')
     .addStyleEntry('css/profile', './assets/scss/profile.scss')
+    .addStyleEntry('css/blog', './assets/scss/blog.scss')
 
     .addStyleEntry('vue/vuesax', './node_modules/vuesax/dist/vuesax.css')
     .addStyleEntry('vue/icon', './node_modules/material-icons/iconfont/material-icons.css')
     .addEntry('boxicons', './node_modules/boxicons/dist/boxicons.js')
     .addEntry('feather', './node_modules/feather-icons/dist/feather.js')
+    .addEntry('ckeditor5-build-classic', './node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')
+    .addEntry('ckeditor5-vue', './node_modules/@ckeditor/ckeditor5-vue/dist/ckeditor.js')
 
     .addEntry('vue/profile__vue', './assets/vue/profile__vue.js')
+    .addEntry('vue/blog__vue', './assets/vue/blog__vue.js')
 
     .enableVueLoader()
 

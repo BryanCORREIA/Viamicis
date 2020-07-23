@@ -702,6 +702,10 @@ table.vs-table {
       overflow-y: scroll;
       width: 94%;
 
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
       &.aside__open {
         border-top-right-radius: 20px;
         width: 71%;
@@ -1162,6 +1166,10 @@ table.vs-table {
   .conversation_messages {
     flex: 1;
     box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 
@@ -1172,6 +1180,10 @@ table.vs-table {
   background-color: white;
   border-right: 1px solid #DFDFDF;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .header_box {
     display: flex;
@@ -1187,6 +1199,10 @@ table.vs-table {
     flex: 1;
     overflow-y: scroll;
     padding: 10px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     .begin_conv {
       border-bottom: 1px solid #DFDFDF;

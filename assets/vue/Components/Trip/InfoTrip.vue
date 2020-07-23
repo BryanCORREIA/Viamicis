@@ -5,7 +5,7 @@
                 <router-link
                         :to="{ name: 'dashboard' }"
                 >
-                    Dashboard
+                    Tableau de bord
                 </router-link>
                 /
                 <router-link
@@ -84,7 +84,8 @@
                         </div>
                     </div>
                     <div class="join-trip">
-                        <vs-button v-if="!trip.isCreator" @click="joinTrip=!joinTrip">Rejoindre ce voyage</vs-button>
+                        <vs-button v-if="trip.alreadyAsk" disabled>Votre demande a été prise en compte</vs-button>
+                        <vs-button v-if="!trip.isCreator && !trip.alreadyAsk" @click="joinTrip=!joinTrip">Rejoindre ce voyage</vs-button>
                         <vs-button v-if="trip.isCreator" @click="wishTrip=!wishTrip">{{ trip.wishes.length }} {{ trip.wishes.length > 1 ? 'demandes' : 'demande' }} en attente</vs-button>
                     </div>
                 </div>

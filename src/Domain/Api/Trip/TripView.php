@@ -93,7 +93,12 @@ class TripView
      */
     public $participants;
 
-    public static function build(Trip $trip, User $userConnected)
+    /**
+     * @var boolean
+     */
+    public $alreadyAsk = 0;
+
+    public static function build(Trip $trip, $userConnected = null)
     {
         $birth = $trip->getCreator()->getIdentity()->getBirth();
         $diff = $birth->diff(new \DateTime('now'));
@@ -123,6 +128,10 @@ class TripView
         ];
 
         foreach ($trip->getWishes() as $wish) {
+            if ($wish->getUser() == $userConnected){
+                $view->alreadyAsk = 1;
+            }
+
             if (-1 == $wish->getAccepted()) {
                 $view->wishes[] = [
                     'userId' => $wish->getUser()->getId(),
@@ -135,7 +144,6 @@ class TripView
                     'userPic' => $wish->getUser()->getIdentity()->getPicture(),
                     'userFull' => $wish->getUser()->getIdentity()->getFullName()
                 ];
-                dump($view->participants);
             }
         }
 

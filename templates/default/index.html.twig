@@ -7,16 +7,93 @@
 {% endblock %}
 
 {% block body %}
-    <div class="box-presentation">
-        <div class="group-illus">
-            <img src="{{ asset('res/group.png') }}" alt="">
+    <div class="first-slide">
+        <div class="columns">
+            <div class="illus-column">
+                <h1>Viamicis</h1>
+                <div class="init">
+                    <h2>Ailleurs et bien accompagné</h2>
+                    <p>Recherchez des personnes pour voyager et vivez une toute nouvelle expérience tout en étant en groupe !</p>
+                    <a href="{{ path('profil_index') }}">Commencer</a>
+                </div>
+
+                <div class="law-section">
+                    <a href="{{ path('index_ml') }}" target="_blank">Mentions Légales</a>
+                    <a href="{{ path('index_conf') }}" target="_blank">Politique de Confidentialité</a>
+                    <a href="{{ path('index_cgu') }}" target="_blank">CGU</a>
+                </div>
+            </div>
+            <div class="info-column">
+                <header>
+                    <div class="logo">
+                        <img src="{{ asset('res/logo.png') }}" alt="">
+                    </div>
+                    <div class="header-links">
+                        <a href="/profil/#/voyage">Voyager</a>
+                        <a href="{{ path('blog_index') }}">Blog</a>
+                        <a href="{{ path('profil_index') }}" class="text-primary"><i class="fad fa-user"></i></a>
+                    </div>
+                </header>
+
+                <h3>Découvrir</h3>
+                <h4><i class="fad fa-star"></i> Notre sélection</h4>
+                <div class="heart-columns">
+                    {% for trip in selection %}
+                        <a href="/profil/#/voyage/{{ trip.id }}" class="heart" style="background-image: url('./res/blog/blog-{{ loop.index + 1 }}.png');">
+                            <div class="country-trip">{{ trip.country }}</div>
+                            <div class="bottom-trip">
+                                <p class="title-trip">{{ trip.title }}</p>
+                                <p class="creator-trip">par {{ trip.creator }}</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+                <h4><i class="fad fa-plane-departure"></i> Types de voyages</h4>
+                <div class="type-trips">
+                    <div class="type">
+                        <div class="icon-type">
+                            <span>✈️</span>
+                        </div>
+                        <p class="name-type">Tous</p>
+                    </div>
+                    <div class="type">
+                        <div class="icon-type">
+                            <span>🎒️</span>
+                        </div>
+                        <p class="name-type">Aventurier</p>
+                    </div>
+                    <div class="type">
+                        <div class="icon-type">
+                            <span>🍸️</span>
+                        </div>
+                        <p class="name-type">Fêtard</p>
+                    </div>
+                    <div class="type">
+                        <div class="icon-type">
+                            <span>🏘️</span>
+                        </div>
+                        <p class="name-type">Citadin</p>
+                    </div>
+                    <div class="type">
+                        <div class="icon-type">
+                            <span>✨️</span>
+                        </div>
+                        <p class="name-type">Autre</p>
+                    </div>
+                </div>
+                <h4><i class="fas fa-heart"></i> Notre article coup de coeur </h4>
+                <div class="article">
+                    <div class="illustration-article" style="background-image: url('./res/blog/{{ article.illustration }}');"></div>
+                    <div class="info-article">
+                        <div class="present">
+                            <p class="cat-lib">Guide</p>
+                            <p class="title-article">{{ article.title }}</p>
+                            <p class="date-create">{{ article.createdAt }}</p>
+                        </div>
+                        <a href="/blog/#/articles/{{ article.slug }}" class="link-article">Lire l'article</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="present-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi consectetur doloremque et incidunt laboriosam maxime, molestias nemo odio quae quos recusandae reprehenderit sed sequi sit soluta totam ut voluptatibus voluptatum.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi consectetur doloremque et incidunt laboriosam maxime, molestias nemo odio quae quos recusandae reprehenderit sed sequi sit soluta totam ut voluptatibus voluptatum.</p>
-        </div>
-    </div>
-    <div class="container">
-        <div id="app"></div>
     </div>
 {% endblock %}

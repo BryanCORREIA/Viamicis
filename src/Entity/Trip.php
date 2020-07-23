@@ -262,6 +262,7 @@ class Trip
      * @return Trip
      */
     public static function build(AddTripAction $action) {
+        dump($action);
         $trip = new self();
 
         $trip->title        = $action->title;
@@ -269,8 +270,8 @@ class Trip
         $trip->beginAt      = \DateTime::createFromFormat('d / m / Y', $action->date);
         $trip->days         = $action->days;
         $trip->travelers    = $action->nbTravelers;
-        $trip->budgetMin    = $action->budget[0];
-        $trip->budgetMax    = $action->budget[1];
+        $trip->budgetMin    = $action->budget->min;
+        $trip->budgetMax    = $action->budget->max;
         $trip->country      = $action->country;
         $trip->city         = $action->city;
         $trip->creator      = $action->creator;

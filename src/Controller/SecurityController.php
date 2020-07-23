@@ -24,6 +24,21 @@ class SecurityController extends AbstractController
         return $this->displayLoginPage($authenticationUtils, $request, $encoder);
     }
 
+    public function checkUser() {
+        if ($this->getUser()) {
+            return $this->json('true');
+        }
+        return $this->json('false');
+    }
+    public function checkUserAdmin() {
+        if ($this->getUser()) {
+            if ($this->isGranted('ROLE_ADMIN')) {
+                return $this->json('true');
+            }
+        }
+        return $this->json('false');
+    }
+
     private function displayLoginPage(AuthenticationUtils $authenticationUtils, Request $request, UserPasswordEncoderInterface $encoder) {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
