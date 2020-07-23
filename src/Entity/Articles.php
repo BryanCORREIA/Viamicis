@@ -20,7 +20,7 @@ class Articles
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=190)
      */
     private $title;
 
@@ -56,7 +56,7 @@ class Articles
     private $valide;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=190)
      */
     private $illustration;
 

@@ -55,9 +55,9 @@ class Identity
     private $country;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $picture;
+    private $picture = "https://media.discordapp.net/attachments/387598639532605453/669123040172441600/tmp.png";
 
     /**
      * @return mixed
