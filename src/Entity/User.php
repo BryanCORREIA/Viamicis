@@ -58,6 +58,7 @@ class User implements UserInterface
     public function __construct() {
         $this->roles = ['ROLE_USER'];
         $this->identity = new Identity();
+        $this->parameters = new Parameters();
         $this->wishes = new ArrayCollection();
     }
 
