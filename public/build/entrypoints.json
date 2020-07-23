@@ -1,0 +1,120 @@
+{
+  "entrypoints": {
+    "Cleave": {
+      "js": [
+        "/build/runtime.js",
+        "/build/Cleave.js"
+      ]
+    },
+    "CleavePhoneFr": {
+      "js": [
+        "/build/runtime.js",
+        "/build/CleavePhoneFr.js"
+      ]
+    },
+    "js/main": {
+      "js": [
+        "/build/runtime.js",
+        "/build/js/main.js"
+      ]
+    },
+    "js/security": {
+      "js": [
+        "/build/runtime.js",
+        "/build/js/security.js"
+      ]
+    },
+    "boxicons": {
+      "js": [
+        "/build/runtime.js",
+        "/build/boxicons.js"
+      ]
+    },
+    "feather": {
+      "js": [
+        "/build/runtime.js",
+        "/build/feather.js"
+      ]
+    },
+    "ckeditor5-build-classic": {
+      "js": [
+        "/build/runtime.js",
+        "/build/ckeditor5-build-classic.js"
+      ]
+    },
+    "ckeditor5-vue": {
+      "js": [
+        "/build/runtime.js",
+        "/build/ckeditor5-vue.js"
+      ]
+    },
+    "vue/profile__vue": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vue/profile__vue.js"
+      ]
+    },
+    "vue/blog__vue": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vue/blog__vue.js"
+      ]
+    },
+    "css/app": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/css/app.css"
+      ]
+    },
+    "css/home": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/css/home.css"
+      ]
+    },
+    "css/security": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/css/security.css"
+      ]
+    },
+    "css/profile": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/css/profile.css"
+      ]
+    },
+    "css/blog": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/css/blog.css"
+      ]
+    },
+    "vue/vuesax": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/vue/vuesax.css"
+      ]
+    },
+    "vue/icon": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/vue/icon.css"
+      ]
+    }
+  }
+}
