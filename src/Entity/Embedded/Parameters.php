@@ -12,12 +12,12 @@ class Parameters
     /**
      * @ORM\Column(type="string", length=7, options={"default" : "#941751"})
      */
-    private $color;
+    private $color = "#45B5B2";
 
     /**
      * @ORM\Column(type="string", length=100, options={"default" : "fade"})
      */
-    private $transition;
+    private $transition = "fade";
 
     public function __construct()
     {
